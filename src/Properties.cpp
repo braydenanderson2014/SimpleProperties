@@ -1,5 +1,5 @@
-#include "Properties.h"
-#include "Hashtable.h"
+#include <SimpleProperties.h>
+#include <Hashtable.h>
 #include <Arduino.h>
 #include <SD.h>
 

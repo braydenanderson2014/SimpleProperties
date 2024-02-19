@@ -1,7 +1,7 @@
-#ifndef PROPERTIES_H
-#define PROPERTIES_H
+#ifndef SIMPLEPROPERTIES_H
+#define SIMPLEPROPERTIES_H
 
-#include "Hashtable.h"
+#include <Hashtable.h>
 #include <Arduino.h>
 
 class Properties {
@@ -85,4 +85,4 @@ public:
     }
 };
 
-#endif // PROPERTIES_H
+#endif // SIMPLEPROPERTIES_H

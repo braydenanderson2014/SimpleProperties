@@ -1,4 +1,4 @@
-#include <Properties.h>
+#include <SimpleProperties.h>
 
 void setup() {
     Serial.begin(9600);
@@ -33,7 +33,7 @@ void setup() {
     Serial.println("Properties Current Capacity: " + String(properties.size()));
     Serial.println("Properties Current Size: " + String(properties.elements()));
 
-    for(Properties:PropertiesIterator it = properties.begin(); it != properties.end(); ++it) {
+    for(Properties::PropertiesIterator it = properties.begin(); it != properties.end(); ++it) {
         Serial.println("Key: " + it.key() + ", Value: " + it.value());
     }
     
@@ -48,6 +48,10 @@ void setup() {
     Serial.println("Properties is empty: " + String(isEmpty));
 
     // Load Properties
-    Properties.loadFromSD("test.txt");
+    properties.loadFromSD("test.txt");
 
+}
+
+void loop() {
+    // Your loop code here
 }
