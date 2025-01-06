@@ -1,0 +1,11 @@
+KNOWN ISSUES:
+
+* Underlying Library Hashtable has 2 known issues at this time. 1 issue is confirmed to be causing issues with Properties -> get() returns nullptr and getElement() returns Nothing even if there should be
+an element associated with the key given to those functions... String* value = table.get("key1"); or String value = table.getElement("key1");  Because of this, Properties might warn you that an element does not exist
+even if it should.
+
+For More Info, Please visit https://github.com/braydenanderson2014/C-Arduino-Libraries
+Please consider supporting my development: https://gofund.me/923e5f10
+
+
+PLEASE NOTE: ALL ISSUES POSTED TO THIS REPOSITORY WILL BE MOVED TO THE MAIN REPOSITORY ONCE VERIFIED!!!
