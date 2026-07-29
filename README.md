@@ -2,6 +2,12 @@
 
 The `Properties` class is a C++ class that provides a simple key-value store for managing properties. It allows you to store and retrieve key-value pairs, save properties to an SD card, load properties from an SD card, and perform other operations commonly used for managing configurations and settings.
 
+## What's new in 1.2.0
+- Added broader filesystem support for SD, LittleFS, and injected fs::FS backends.
+- Improved YAML, JSON, TOML, INI, and CSV parsing/serialization behavior.
+- Fixed issues around trailing commas, blank/comment line handling, and file-loading edge cases.
+- Refined the Properties API documentation and compatibility with the latest Hashtable and SimpleVector behavior.
+
 ## Usage
 
 To use the `Properties` class, follow these steps:
@@ -26,10 +32,12 @@ git clone "https://github.com/braydenanderson2014/SimpleVector.git"
 ```
 ## Header
 
-If you want to Utilize this Library. Please include the 
+If you want to utilize this library, please include the 
 ```cpp 
 #include <Properties.h> 
 ```
+
+`Properties` now supports SD by default and can also target LittleFS or any other `fs::FS` backend directly.
 
 If you use the Properties library outside of platformio, please also add the 
 ```cpp
@@ -42,15 +50,6 @@ You may also need:
 * RTCLib
 * LiquidCrystal
 * LiquidCrystal_I2C
-
-# LITTLEFSPROPERTIES:
-## ChangeLog
-### UNOFFICIAL RELEASE 1
-* Initital Untested/Unpublished Release
-### UNOFFICIAL RELEASE 2
-* Added Support for new MbedLittleFSWrapper Library (Also Unpublished as of 03/28/2024) [NOTE]: If you want to use the new LITTLEFSPROPERTIES library, you will need to download the necessary files from the github repository. You will need the littlefs-master and MbedLittleFSWrapper libraries contained inside the main repository: C-Arduino-Libraries.
-* Added new ChipSelect pin customizability to match Original Properties Library.
-
 
 # PROPERTIES
 
@@ -119,14 +118,42 @@ You may also need:
 ### Version 1.1.2: [CURRENT-RELEASE] 
 * Added Support for custom chipSelect pin. You can now setChipSelect and getChipSelect which allows you to customize which pin gets used as the ChipSelect pin on an SD card reader. 
 * This Version moves the library back out of Beta status. Though the library may still have issues... If you spot any bugs, please do not hesitate to file an issue report.
+### Version 1.2.0: [CURRENT]
+* Added broader filesystem support for SD, LittleFS, and injected fs::FS backends.
+* Improved YAML, JSON, TOML, INI, and CSV parsing/serialization behavior.
+* Fixed issues around trailing commas, blank/comment line handling, and file-loading edge cases.
+* Refined the Properties API documentation and compatibility with the latest Hashtable and SimpleVector behavior.
 
             
-## NEW ALPHA FEATURE
-* If you include the 
-```cpp 
-#include LittleFSProperties.h
-```     
-header file, you can use the new Features.. (This library now supports the LITTLE FS library. It is only an Alpha Build and may not work.) Must use the LittleFSProperties header in order for it to work. And you will lose normal sd functions. [WARNING]: Please do not include LittleFSProperties.h if you already have Properties.h included. This may cause unintended concequences. 
+## LittleFS support
+Use `Properties.h` for both SD and LittleFS.
+
+### SD example
+```cpp
+#include <Properties.h>
+
+Properties properties;
+
+void setup() {
+    properties.begin(4);
+}
+```
+
+### LittleFS example
+```cpp
+#include <Properties.h>
+#include <LittleFS.h>
+
+Properties properties;
+
+void setup() {
+    if (LittleFS.begin()) {
+        properties.begin(LittleFS);
+    }
+}
+```
+
+`LittleFSProperties.h` is kept only as a backwards-compatible shim for older sketches.
 
 Here's an example of how to use the `Properties` class:
 
